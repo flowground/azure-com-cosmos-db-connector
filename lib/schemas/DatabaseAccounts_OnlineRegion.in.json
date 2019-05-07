@@ -1,0 +1,39 @@
+{
+    "type": "object",
+    "properties": {
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "resourceGroupName": {
+            "required": true,
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 90,
+            "pattern": "^[-\\w\\._\\(\\)]+$"
+        },
+        "accountName": {
+            "required": true,
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 50
+        },
+        "requestBody": {
+            "description": "Cosmos DB region to online or offline.",
+            "properties": {
+                "region": {
+                    "description": "Cosmos DB region, with spaces between words and each word capitalized.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "region"
+            ],
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

@@ -1,0 +1,230 @@
+{
+    "type": "object",
+    "properties": {
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "resourceGroupName": {
+            "required": true,
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 90,
+            "pattern": "^[-\\w\\._\\(\\)]+$"
+        },
+        "accountName": {
+            "required": true,
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 50
+        },
+        "requestBody": {
+            "allOf": [
+                {
+                    "description": "A database account resource.",
+                    "properties": {
+                        "id": {
+                            "description": "The unique resource identifier of the database account.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "location": {
+                            "description": "The location of the resource group to which the resource belongs.",
+                            "type": "string"
+                        },
+                        "name": {
+                            "description": "The name of the database account.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "tags": {
+                            "additionalProperties": {
+                                "type": "string"
+                            },
+                            "description": "Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\".",
+                            "type": "object"
+                        },
+                        "type": {
+                            "description": "The type of Azure resource.",
+                            "readOnly": true,
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "location"
+                    ],
+                    "type": "object",
+                    "x-ms-azure-resource": true
+                }
+            ],
+            "description": "Parameters to create and update Cosmos DB database accounts.",
+            "properties": {
+                "kind": {
+                    "default": "GlobalDocumentDB",
+                    "description": "Indicates the type of database account. This can only be set at database account creation.",
+                    "enum": [
+                        "GlobalDocumentDB",
+                        "MongoDB",
+                        "Parse"
+                    ],
+                    "type": "string",
+                    "x-ms-enum": {
+                        "modelAsString": true,
+                        "name": "DatabaseAccountKind"
+                    }
+                },
+                "properties": {
+                    "x-ms-client-flatten": true,
+                    "description": "Properties to create and update Azure Cosmos DB database accounts.",
+                    "properties": {
+                        "capabilities": {
+                            "description": "List of Cosmos DB capabilities for the account",
+                            "items": {
+                                "description": "Cosmos DB capability object",
+                                "properties": {
+                                    "name": {
+                                        "description": "Name of the Cosmos DB capability. For example, \"name\": \"EnableCassandra\". Current values also include \"EnableTable\" and \"EnableGremlin\".",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            },
+                            "type": "array"
+                        },
+                        "consistencyPolicy": {
+                            "description": "The consistency policy for the Cosmos DB account.",
+                            "properties": {
+                                "defaultConsistencyLevel": {
+                                    "description": "The default consistency level and configuration settings of the Cosmos DB account.",
+                                    "enum": [
+                                        "Eventual",
+                                        "Session",
+                                        "BoundedStaleness",
+                                        "Strong",
+                                        "ConsistentPrefix"
+                                    ],
+                                    "type": "string",
+                                    "x-ms-enum": {
+                                        "modelAsString": false,
+                                        "name": "DefaultConsistencyLevel"
+                                    }
+                                },
+                                "maxIntervalInSeconds": {
+                                    "description": "When used with the Bounded Staleness consistency level, this value represents the time amount of staleness (in seconds) tolerated. Accepted range for this value is 5 - 86400. Required when defaultConsistencyPolicy is set to 'BoundedStaleness'.",
+                                    "format": "int32",
+                                    "maximum": 86400,
+                                    "minimum": 5,
+                                    "type": "integer"
+                                },
+                                "maxStalenessPrefix": {
+                                    "description": "When used with the Bounded Staleness consistency level, this value represents the number of stale requests tolerated. Accepted range for this value is 1 – 2,147,483,647. Required when defaultConsistencyPolicy is set to 'BoundedStaleness'.",
+                                    "format": "int64",
+                                    "maximum": 2147483647,
+                                    "minimum": 1,
+                                    "type": "integer"
+                                }
+                            },
+                            "required": [
+                                "defaultConsistencyLevel"
+                            ],
+                            "type": "object"
+                        },
+                        "databaseAccountOfferType": {
+                            "description": "The offer type for the Cosmos DB database account.",
+                            "enum": [
+                                "Standard"
+                            ],
+                            "type": "string",
+                            "x-ms-enum": {
+                                "modelAsString": false,
+                                "name": "DatabaseAccountOfferType"
+                            }
+                        },
+                        "enableAutomaticFailover": {
+                            "description": "Enables automatic failover of the write region in the rare event that the region is unavailable due to an outage. Automatic failover will result in a new write region for the account and is chosen based on the failover priorities configured for the account.",
+                            "type": "boolean"
+                        },
+                        "enableMultipleWriteLocations": {
+                            "description": "Enables the account to write in multiple locations",
+                            "type": "boolean"
+                        },
+                        "ipRangeFilter": {
+                            "description": "Cosmos DB Firewall Support: This value specifies the set of IP addresses or IP address ranges in CIDR form to be included as the allowed list of client IPs for a given database account. IP addresses/ranges must be comma separated and must not contain any spaces.",
+                            "type": "string"
+                        },
+                        "isVirtualNetworkFilterEnabled": {
+                            "description": "Flag to indicate whether to enable/disable Virtual Network ACL rules.",
+                            "type": "boolean"
+                        },
+                        "locations": {
+                            "description": "An array that contains the georeplication locations enabled for the Cosmos DB account.",
+                            "items": {
+                                "description": "A region in which the Azure Cosmos DB database account is deployed.",
+                                "properties": {
+                                    "documentEndpoint": {
+                                        "description": "The connection endpoint for the specific region. Example: https://&lt;accountName&gt;-&lt;locationName&gt;.documents.azure.com:443/",
+                                        "readOnly": true,
+                                        "type": "string"
+                                    },
+                                    "failoverPriority": {
+                                        "description": "The failover priority of the region. A failover priority of 0 indicates a write region. The maximum value for a failover priority = (total number of regions - 1). Failover priority values must be unique for each of the regions in which the database account exists.",
+                                        "format": "int32",
+                                        "minimum": 0,
+                                        "type": "integer"
+                                    },
+                                    "id": {
+                                        "description": "The unique identifier of the region within the database account. Example: &lt;accountName&gt;-&lt;locationName&gt;.",
+                                        "readOnly": true,
+                                        "type": "string"
+                                    },
+                                    "locationName": {
+                                        "description": "The name of the region.",
+                                        "type": "string"
+                                    },
+                                    "provisioningState": {
+                                        "description": "The status of the Cosmos DB account at the time the operation was called. The status can be one of following. 'Creating' – the Cosmos DB account is being created. When an account is in Creating state, only properties that are specified as input for the Create Cosmos DB account operation are returned. 'Succeeded' – the Cosmos DB account is active for use. 'Updating' – the Cosmos DB account is being updated. 'Deleting' – the Cosmos DB account is being deleted. 'Failed' – the Cosmos DB account failed creation.",
+                                        "readOnly": true,
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            },
+                            "type": "array"
+                        },
+                        "virtualNetworkRules": {
+                            "description": "List of Virtual Network ACL rules configured for the Cosmos DB account.",
+                            "items": {
+                                "description": "Virtual Network ACL Rule object",
+                                "properties": {
+                                    "id": {
+                                        "description": "Resource ID of a subnet, for example: /subscriptions/{subscriptionId}/resourceGroups/{groupName}/providers/Microsoft.Network/virtualNetworks/{virtualNetworkName}/subnets/{subnetName}.",
+                                        "type": "string"
+                                    },
+                                    "ignoreMissingVNetServiceEndpoint": {
+                                        "description": "Create firewall rule before the virtual network has vnet service endpoint enabled.",
+                                        "type": "boolean"
+                                    }
+                                },
+                                "type": "object"
+                            },
+                            "type": "array"
+                        }
+                    },
+                    "required": [
+                        "locations",
+                        "databaseAccountOfferType"
+                    ],
+                    "type": "object"
+                }
+            },
+            "required": [
+                "properties"
+            ],
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

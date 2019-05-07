@@ -1,0 +1,645 @@
+{
+    "title": "Cosmos DB",
+    "description": "Azure Cosmos DB Database Service Resource Provider REST API",
+    "docsUrl": "",
+    "url": "https://api.apis.guru/v2/specs/azure.com/cosmos-db/2015-04-08/swagger.json",
+    "envVars": {
+        "OAUTH_CLIENT_ID": {
+            "description": "OAuth Client ID"
+        },
+        "OAUTH_CLIENT_SECRET": {
+            "description": "OAuth Client Secret"
+        }
+    },
+    "credentials": {
+        "fields": {
+            "server": {
+                "label": "Server",
+                "viewClass": "SelectView",
+                "model": [
+                    "https://management.azure.com/",
+                    "--- Custom URL"
+                ],
+                "required": true
+            },
+            "otherServer": {
+                "label": "Custom Server URL",
+                "viewClass": "TextFieldView"
+            },
+            "azure_auth": {
+                "label": "Azure Active Directory OAuth2 Flow",
+                "viewClass": "OAuthFieldView"
+            }
+        },
+        "oauth2": {
+            "client_id": "{{OAUTH_CLIENT_ID}}",
+            "client_secret": "{{OAUTH_CLIENT_SECRET}}",
+            "auth_uri": "https://login.microsoftonline.com/common/oauth2/authorize"
+        }
+    },
+    "triggers": {
+        "startFlow": {
+            "main": "./lib/triggers/startFlow.js",
+            "type": "polling",
+            "title": "Start Flow",
+            "fields": {}
+        }
+    },
+    "actions": {
+        "DatabaseAccounts_CheckNameExists": {
+            "main": "./lib/actions/DatabaseAccounts_CheckNameExists.js",
+            "title": "Checks that the Azure Cosmos DB account name already exists. A valid account name may contain only lowercase letters, numbers, and the '-' character, and must be between 3 and 50 characters.",
+            "description": "Checks that the Azure Cosmos DB account name already exists. A valid account name may contain only lowercase letters, numbers, and the '-' character, and must be between 3 and 50 characters.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/DatabaseAccounts_CheckNameExists.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Operations_List": {
+            "main": "./lib/actions/Operations_List.js",
+            "title": "Lists all of the available Cosmos DB Resource Provider operations.",
+            "description": "Lists all of the available Cosmos DB Resource Provider operations.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Operations_List.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "DatabaseAccounts_List": {
+            "main": "./lib/actions/DatabaseAccounts_List.js",
+            "title": "Lists all the Azure Cosmos DB database accounts available under the subscription.",
+            "description": "Lists all the Azure Cosmos DB database accounts available under the subscription.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/DatabaseAccounts_List.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "DatabaseAccounts_ListByResourceGroup": {
+            "main": "./lib/actions/DatabaseAccounts_ListByResourceGroup.js",
+            "title": "Lists all the Azure Cosmos DB database accounts available under the given resource group.",
+            "description": "Lists all the Azure Cosmos DB database accounts available under the given resource group.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/DatabaseAccounts_ListByResourceGroup.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "DatabaseAccounts_Delete": {
+            "main": "./lib/actions/DatabaseAccounts_Delete.js",
+            "title": "Deletes an existing Azure Cosmos DB database account.",
+            "description": "Deletes an existing Azure Cosmos DB database account.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/DatabaseAccounts_Delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "DatabaseAccounts_Get": {
+            "main": "./lib/actions/DatabaseAccounts_Get.js",
+            "title": "Retrieves the properties of an existing Azure Cosmos DB database account.",
+            "description": "Retrieves the properties of an existing Azure Cosmos DB database account.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/DatabaseAccounts_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "DatabaseAccounts_Patch": {
+            "main": "./lib/actions/DatabaseAccounts_Patch.js",
+            "title": "Patches the properties of an existing Azure Cosmos DB database account.",
+            "description": "Patches the properties of an existing Azure Cosmos DB database account.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/DatabaseAccounts_Patch.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "DatabaseAccounts_CreateOrUpdate": {
+            "main": "./lib/actions/DatabaseAccounts_CreateOrUpdate.js",
+            "title": "Creates or updates an Azure Cosmos DB database account.",
+            "description": "Creates or updates an Azure Cosmos DB database account.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/DatabaseAccounts_CreateOrUpdate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Collection_ListMetricDefinitions": {
+            "main": "./lib/actions/Collection_ListMetricDefinitions.js",
+            "title": "Retrieves metric definitions for the given collection.",
+            "description": "Retrieves metric definitions for the given collection.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Collection_ListMetricDefinitions.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Collection_ListMetrics": {
+            "main": "./lib/actions/Collection_ListMetrics.js",
+            "title": "Retrieves the metrics determined by the given filter for the given database account and collection.",
+            "description": "Retrieves the metrics determined by the given filter for the given database account and collection.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Collection_ListMetrics.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "PartitionKeyRangeId_ListMetrics": {
+            "main": "./lib/actions/PartitionKeyRangeId_ListMetrics.js",
+            "title": "Retrieves the metrics determined by the given filter for the given partition key range id.",
+            "description": "Retrieves the metrics determined by the given filter for the given partition key range id.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/PartitionKeyRangeId_ListMetrics.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "CollectionPartition_ListMetrics": {
+            "main": "./lib/actions/CollectionPartition_ListMetrics.js",
+            "title": "Retrieves the metrics determined by the given filter for the given collection, split by partition.",
+            "description": "Retrieves the metrics determined by the given filter for the given collection, split by partition.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/CollectionPartition_ListMetrics.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "CollectionPartition_ListUsages": {
+            "main": "./lib/actions/CollectionPartition_ListUsages.js",
+            "title": "Retrieves the usages (most recent storage data) for the given collection, split by partition.",
+            "description": "Retrieves the usages (most recent storage data) for the given collection, split by partition.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/CollectionPartition_ListUsages.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Collection_ListUsages": {
+            "main": "./lib/actions/Collection_ListUsages.js",
+            "title": "Retrieves the usages (most recent storage data) for the given collection.",
+            "description": "Retrieves the usages (most recent storage data) for the given collection.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Collection_ListUsages.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Database_ListMetricDefinitions": {
+            "main": "./lib/actions/Database_ListMetricDefinitions.js",
+            "title": "Retrieves metric definitions for the given database.",
+            "description": "Retrieves metric definitions for the given database.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Database_ListMetricDefinitions.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Database_ListMetrics": {
+            "main": "./lib/actions/Database_ListMetrics.js",
+            "title": "Retrieves the metrics determined by the given filter for the given database account and database.",
+            "description": "Retrieves the metrics determined by the given filter for the given database account and database.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Database_ListMetrics.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Database_ListUsages": {
+            "main": "./lib/actions/Database_ListUsages.js",
+            "title": "Retrieves the usages (most recent data) for the given database.",
+            "description": "Retrieves the usages (most recent data) for the given database.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Database_ListUsages.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "DatabaseAccounts_FailoverPriorityChange": {
+            "main": "./lib/actions/DatabaseAccounts_FailoverPriorityChange.js",
+            "title": "Changes the failover priority for the Azure Cosmos DB database account. A failover priority of 0 indicates a write region. The maximum value for a failover priority = (total number of regions - 1). Failover priority values must be unique for each of the regions in which the database account exists.",
+            "description": "Changes the failover priority for the Azure Cosmos DB database account. A failover priority of 0 indicates a write region. The maximum value for a failover priority = (total number of regions - 1). Failover priority values must be unique for each of the regions in which the database account exists.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/DatabaseAccounts_FailoverPriorityChange.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "DatabaseAccounts_ListConnectionStrings": {
+            "main": "./lib/actions/DatabaseAccounts_ListConnectionStrings.js",
+            "title": "Lists the connection strings for the specified Azure Cosmos DB database account.",
+            "description": "Lists the connection strings for the specified Azure Cosmos DB database account.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/DatabaseAccounts_ListConnectionStrings.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "DatabaseAccounts_ListKeys": {
+            "main": "./lib/actions/DatabaseAccounts_ListKeys.js",
+            "title": "Lists the access keys for the specified Azure Cosmos DB database account.",
+            "description": "Lists the access keys for the specified Azure Cosmos DB database account.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/DatabaseAccounts_ListKeys.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "DatabaseAccounts_ListMetricDefinitions": {
+            "main": "./lib/actions/DatabaseAccounts_ListMetricDefinitions.js",
+            "title": "Retrieves metric definitions for the given database account.",
+            "description": "Retrieves metric definitions for the given database account.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/DatabaseAccounts_ListMetricDefinitions.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "DatabaseAccounts_ListMetrics": {
+            "main": "./lib/actions/DatabaseAccounts_ListMetrics.js",
+            "title": "Retrieves the metrics determined by the given filter for the given database account.",
+            "description": "Retrieves the metrics determined by the given filter for the given database account.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/DatabaseAccounts_ListMetrics.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "DatabaseAccounts_OfflineRegion": {
+            "main": "./lib/actions/DatabaseAccounts_OfflineRegion.js",
+            "title": "Offline the specified region for the specified Azure Cosmos DB database account.",
+            "description": "Offline the specified region for the specified Azure Cosmos DB database account.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/DatabaseAccounts_OfflineRegion.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "DatabaseAccounts_OnlineRegion": {
+            "main": "./lib/actions/DatabaseAccounts_OnlineRegion.js",
+            "title": "Online the specified region for the specified Azure Cosmos DB database account.",
+            "description": "Online the specified region for the specified Azure Cosmos DB database account.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/DatabaseAccounts_OnlineRegion.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Percentile_ListMetrics": {
+            "main": "./lib/actions/Percentile_ListMetrics.js",
+            "title": "Retrieves the metrics determined by the given filter for the given database account. This url is only for PBS and Replication Latency data",
+            "description": "Retrieves the metrics determined by the given filter for the given database account. This url is only for PBS and Replication Latency data",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Percentile_ListMetrics.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "DatabaseAccounts_GetReadOnlyKeys": {
+            "main": "./lib/actions/DatabaseAccounts_GetReadOnlyKeys.js",
+            "title": "Lists the read-only access keys for the specified Azure Cosmos DB database account.",
+            "description": "Lists the read-only access keys for the specified Azure Cosmos DB database account.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/DatabaseAccounts_GetReadOnlyKeys.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "DatabaseAccounts_ListReadOnlyKeys": {
+            "main": "./lib/actions/DatabaseAccounts_ListReadOnlyKeys.js",
+            "title": "Lists the read-only access keys for the specified Azure Cosmos DB database account.",
+            "description": "Lists the read-only access keys for the specified Azure Cosmos DB database account.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/DatabaseAccounts_ListReadOnlyKeys.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "DatabaseAccounts_RegenerateKey": {
+            "main": "./lib/actions/DatabaseAccounts_RegenerateKey.js",
+            "title": "Regenerates an access key for the specified Azure Cosmos DB database account.",
+            "description": "Regenerates an access key for the specified Azure Cosmos DB database account.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/DatabaseAccounts_RegenerateKey.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "CollectionRegion_ListMetrics": {
+            "main": "./lib/actions/CollectionRegion_ListMetrics.js",
+            "title": "Retrieves the metrics determined by the given filter for the given database account, collection and region.",
+            "description": "Retrieves the metrics determined by the given filter for the given database account, collection and region.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/CollectionRegion_ListMetrics.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "PartitionKeyRangeIdRegion_ListMetrics": {
+            "main": "./lib/actions/PartitionKeyRangeIdRegion_ListMetrics.js",
+            "title": "Retrieves the metrics determined by the given filter for the given partition key range id and region.",
+            "description": "Retrieves the metrics determined by the given filter for the given partition key range id and region.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/PartitionKeyRangeIdRegion_ListMetrics.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "CollectionPartitionRegion_ListMetrics": {
+            "main": "./lib/actions/CollectionPartitionRegion_ListMetrics.js",
+            "title": "Retrieves the metrics determined by the given filter for the given collection and region, split by partition.",
+            "description": "Retrieves the metrics determined by the given filter for the given collection and region, split by partition.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/CollectionPartitionRegion_ListMetrics.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "DatabaseAccountRegion_ListMetrics": {
+            "main": "./lib/actions/DatabaseAccountRegion_ListMetrics.js",
+            "title": "Retrieves the metrics determined by the given filter for the given database account and region.",
+            "description": "Retrieves the metrics determined by the given filter for the given database account and region.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/DatabaseAccountRegion_ListMetrics.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "PercentileSourceTarget_ListMetrics": {
+            "main": "./lib/actions/PercentileSourceTarget_ListMetrics.js",
+            "title": "Retrieves the metrics determined by the given filter for the given account, source and target region. This url is only for PBS and Replication Latency data",
+            "description": "Retrieves the metrics determined by the given filter for the given account, source and target region. This url is only for PBS and Replication Latency data",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/PercentileSourceTarget_ListMetrics.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "PercentileTarget_ListMetrics": {
+            "main": "./lib/actions/PercentileTarget_ListMetrics.js",
+            "title": "Retrieves the metrics determined by the given filter for the given account target region. This url is only for PBS and Replication Latency data",
+            "description": "Retrieves the metrics determined by the given filter for the given account target region. This url is only for PBS and Replication Latency data",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/PercentileTarget_ListMetrics.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "DatabaseAccounts_ListUsages": {
+            "main": "./lib/actions/DatabaseAccounts_ListUsages.js",
+            "title": "Retrieves the usages (most recent data) for the given database account.",
+            "description": "Retrieves the usages (most recent data) for the given database account.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/DatabaseAccounts_ListUsages.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        }
+    }
+}
